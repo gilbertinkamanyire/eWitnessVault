@@ -1,0 +1,168 @@
+/* ============================================
+   eWitnessVault - Media Styles
+   Images, videos, SVGs, PDFs, and evidence files
+   ============================================ */
+
+/* Base Image Styles */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    object-position: center;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: auto;
+    border-style: none;
+}
+
+/* Inline Images */
+img[style*="display: inline"],
+img.inline {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Logo Images */
+img.logo,
+.logo,
+.logo img {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    max-height: 48px;
+    min-height: 24px;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+/* SVG Base Styles */
+svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    width: 100%;
+    overflow: visible;
+}
+
+/* SVG Icons - Small and Professional */
+svg.icon,
+.icon svg,
+.icon {
+    width: 16px;
+    height: 16px;
+    max-width: 16px;
+    max-height: 16px;
+    min-width: 12px;
+    min-height: 12px;
+    flex-shrink: 0;
+}
+
+svg.icon-large,
+.icon-large svg {
+    width: 24px;
+    height: 24px;
+}
+
+svg.icon-small,
+.icon-small svg {
+    width: 12px;
+    height: 12px;
+}
+
+/* Evidence Preview */
+.evidence-preview,
+.evidence-preview-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    overflow: hidden;
+}
+
+.evidence-preview img,
+.evidence-image {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Evidence Thumbnails */
+.evidence-thumbnail,
+.thumbnail {
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.evidence-thumbnail:hover,
+.thumbnail:hover {
+    transform: scale(1.05);
+}
+
+/* Video Elements */
+video {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    background: #000;
+    border-radius: 8px;
+}
+
+/* PDF Viewer */
+.pdf-viewer,
+.pdf-container,
+iframe[src*=".pdf"] {
+    width: 100%;
+    max-width: 100%;
+    height: 500px;
+    min-height: 350px;
+    border: none;
+    display: block;
+    background: #f5f5f5;
+    border-radius: 8px;
+}
+
+/* Responsive Media */
+@media (max-width: 768px) {
+    .evidence-preview img,
+    .evidence-image {
+        max-height: 300px;
+    }
+
+    .pdf-viewer,
+    .pdf-container {
+        height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .evidence-preview img,
+    .evidence-image {
+        max-height: 250px;
+    }
+
+    .pdf-viewer,
+    .pdf-container {
+        height: 300px;
+    }
+}
+

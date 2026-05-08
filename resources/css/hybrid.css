@@ -1,0 +1,527 @@
+/* ============================================
+   eWitnessVault — Hybrid App Styles
+   PWA Install Banner, Network Toast, Bottom Nav,
+   GPS/Timestamp Overlays, Privacy Indicators
+   ============================================ */
+
+/* ─── PWA INSTALL BANNER ─────────────────────── */
+#pwa-install-banner {
+    position: fixed;
+    bottom: -120px;
+    left: 1rem;
+    right: 1rem;
+    z-index: 10000;
+    transition: bottom 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    max-width: 460px;
+    margin: 0 auto;
+}
+
+#pwa-install-banner.pwa-banner-visible {
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+}
+
+.pwa-banner-content {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.85rem 1rem;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(6, 182, 212, 0.15);
+}
+
+.pwa-banner-icon img {
+    display: block;
+}
+
+.pwa-banner-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.pwa-banner-title {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #e2e8f0;
+}
+
+.pwa-banner-subtitle {
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+.pwa-banner-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pwa-btn-install {
+    padding: 0.5rem 1.25rem;
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.8125rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Outfit', sans-serif;
+}
+
+.pwa-btn-install:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
+}
+
+.pwa-btn-dismiss {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(71, 85, 105, 0.3);
+    border: 1px solid rgba(71, 85, 105, 0.4);
+    border-radius: 50%;
+    color: #64748b;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    line-height: 1;
+}
+
+.pwa-btn-dismiss:hover {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+/* ─── NETWORK STATUS TOAST ───────────────────── */
+.network-toast {
+    position: fixed;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.65rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+    backdrop-filter: blur(15px);
+    transition: top 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+}
+
+.network-toast.toast-visible {
+    top: calc(1rem + env(safe-area-inset-top, 0px));
+}
+
+.network-toast.online {
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #6ee7b7;
+}
+
+.network-toast.offline {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #fca5a5;
+}
+
+.network-toast-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.dot-online {
+    background: #10b981;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+}
+
+.dot-offline {
+    background: #ef4444;
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
+    animation: blink-dot 1.5s ease-in-out infinite;
+}
+
+@keyframes blink-dot {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+/* ─── APP UPDATE BAR ─────────────────────────── */
+#update-bar {
+    position: fixed;
+    top: -60px;
+    left: 0;
+    right: 0;
+    z-index: 10002;
+    transition: top 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#update-bar.update-visible {
+    top: 0;
+}
+
+.update-bar-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(8, 145, 178, 0.1));
+    border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+    backdrop-filter: blur(15px);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.update-btn {
+    padding: 0.35rem 1rem;
+    background: #06b6d4;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.75rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* ─── MOBILE BOTTOM NAVIGATION ───────────────── */
+.bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: rgba(8, 10, 25, 0.97);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(71, 85, 105, 0.3);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.4);
+}
+
+.bottom-nav-items {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.35rem 0.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.25s;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+    min-width: 56px;
+}
+
+.bottom-nav-item i {
+    font-size: 1.35rem;
+    color: #475569;
+    transition: all 0.25s;
+}
+
+.bottom-nav-item span {
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: #475569;
+    letter-spacing: 0.3px;
+    transition: all 0.25s;
+}
+
+.bottom-nav-item.active i {
+    color: #22d3ee;
+    filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.5));
+}
+
+.bottom-nav-item.active span {
+    color: #22d3ee;
+}
+
+.bottom-nav-item.active::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 3px;
+    background: #22d3ee;
+    border-radius: 0 0 3px 3px;
+    box-shadow: 0 2px 8px rgba(34, 211, 238, 0.5);
+}
+
+/* Upload FAB in bottom nav */
+.bottom-nav-fab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    border-radius: 50%;
+    margin-top: -20px;
+    box-shadow: 0 4px 20px rgba(6, 182, 212, 0.4);
+    text-decoration: none;
+    transition: all 0.3s;
+    border: 3px solid rgba(8, 10, 25, 0.97);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.bottom-nav-fab i {
+    font-size: 1.5rem;
+    color: #fff !important;
+}
+
+.bottom-nav-fab:active {
+    transform: scale(0.92);
+}
+
+@media (max-width: 768px) {
+    .bottom-nav {
+        display: block;
+    }
+
+    /* Add padding at bottom of pages so content isn't hidden behind bottom nav */
+    body {
+        padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px)) !important;
+    }
+
+    /* Hide desktop nav on mobile for standalone/installed app */
+    @media (display-mode: standalone) {
+
+        .top-nav .top-nav-links,
+        .sm\\:flex.sm\\:items-center.sm\\:ms-8 {
+            display: none !important;
+        }
+    }
+}
+
+/* ─── GPS / LOCATION BADGE ───────────────────── */
+.gps-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #6ee7b7;
+    font-family: 'Outfit', sans-serif;
+}
+
+.gps-badge.gps-pending {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.25);
+    color: #fbbf24;
+}
+
+.gps-badge.gps-denied {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.25);
+    color: #fca5a5;
+}
+
+.gps-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+}
+
+.gps-badge.gps-pending .gps-badge-dot {
+    background: #f59e0b;
+    box-shadow: 0 0 6px rgba(245, 158, 11, 0.6);
+    animation: blink-dot 1.5s ease-in-out infinite;
+}
+
+.gps-badge.gps-denied .gps-badge-dot {
+    background: #ef4444;
+    box-shadow: 0 0 6px rgba(239, 68, 68, 0.6);
+}
+
+/* ─── TIMESTAMP BADGE ────────────────────────── */
+.timestamp-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    background: rgba(6, 182, 212, 0.1);
+    border: 1px solid rgba(6, 182, 212, 0.25);
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #67e8f9;
+    font-family: monospace;
+}
+
+/* ─── PRIVACY & ENCRYPTION INDICATORS ────────── */
+.privacy-shield {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    background: rgba(16, 185, 129, 0.06);
+    border: 1px solid rgba(16, 185, 129, 0.15);
+    border-radius: 10px;
+    font-size: 0.8125rem;
+    color: #6ee7b7;
+    font-weight: 600;
+}
+
+.privacy-shield i {
+    color: #10b981;
+}
+
+.encryption-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.06) 0%, rgba(6, 182, 212, 0.04) 100%);
+    border: 1px solid rgba(16, 185, 129, 0.15);
+    border-radius: 14px;
+}
+
+.encryption-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.encryption-icon i {
+    font-size: 1.25rem;
+    color: #10b981;
+}
+
+.encryption-details {
+    flex: 1;
+}
+
+.encryption-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #e2e8f0;
+    margin-bottom: 0.15rem;
+}
+
+.encryption-desc {
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+/* ─── METADATA CAPTURE PANEL ─────────────────── */
+.metadata-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(71, 85, 105, 0.2);
+    border-radius: 12px;
+}
+
+.metadata-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.metadata-label {
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.metadata-value {
+    font-size: 0.8125rem;
+    color: #cbd5e1;
+    font-family: monospace;
+}
+
+.metadata-value.verified {
+    color: #6ee7b7;
+}
+
+/* ─── EVIDENCE CHAIN OF CUSTODY TAG ──────────── */
+.chain-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.7rem;
+    background: rgba(168, 85, 247, 0.1);
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    border-radius: 6px;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: #c4b5fd;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ─── RESPONSIVE EVIDENCE DETAIL GRID ────────── */
+@media (max-width: 768px) {
+    .evidence-detail-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ─── TOUCH ENHANCEMENT ──────────────────────── */
+@media (hover: none) and (pointer: coarse) {
+
+    /* Bigger touch targets on mobile */
+    .action-card,
+    .stat-card,
+    .bottom-nav-item {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .action-card:active,
+    .stat-card:active {
+        transform: scale(0.97) !important;
+        transition: transform 0.1s !important;
+    }
+
+    /* Disable hover effects on touch devices */
+    .action-card:hover {
+        transform: none;
+    }
+}

@@ -1,0 +1,37 @@
+{
+  "appId": "com.ewitnessvault.app",
+  "appName": "eWitnessVault",
+  "webDir": "public",
+  "bundledWebRuntime": false,
+  "server": {
+    "url": "http://192.168.12.186:8000",
+    "allowNavigation": [
+      "192.168.12.186"
+    ],
+    "cleartext": true
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 3000,
+      "launchAutoHide": true,
+      "backgroundColor": "#0f172a",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": true,
+      "androidSpinnerStyle": "large",
+      "iosSpinnerStyle": "small",
+      "spinnerColor": "#f59e0b",
+      "splashFullScreen": true,
+      "splashImmersive": true
+    },
+    "Keyboard": {
+      "resize": "body",
+      "style": "DARK",
+      "resizeOnFullScreen": true
+    },
+    "Haptics": {
+      "selectionStyle": "SOFT",
+      "notificationStyle": "SUCCESS"
+    }
+  }
+}

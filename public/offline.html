@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#0f172a">
+    <title>Offline | eWitnessVault</title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/images/logo-192.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap');
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Outfit', sans-serif;
+            color: white;
+            background: #0f172a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 30% 30%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(245, 158, 11, 0.06) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .offline-container {
+            position: relative;
+            z-index: 1;
+            max-width: 460px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .offline-icon-wrapper {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            background: rgba(6, 182, 212, 0.08);
+            border: 2px solid rgba(6, 182, 212, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        .offline-icon-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 1px solid rgba(6, 182, 212, 0.1);
+            animation: pulse 3s ease-in-out infinite 0.5s;
+        }
+
+        .offline-icon {
+            font-size: 3.5rem;
+            line-height: 1;
+        }
+
+        .offline-title {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(to right, #ffffff, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+        }
+
+        .offline-message {
+            font-size: 1.0625rem;
+            color: #94a3b8;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+        }
+
+        .offline-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.9rem 2.5rem;
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            border: 2px solid #06b6d4;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.3);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offline-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: left 0.5s;
+        }
+        .offline-btn:hover::before { left: 100%; }
+
+        .offline-btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 0 45px rgba(34, 211, 238, 0.5);
+            border-color: #22d3ee;
+        }
+
+        .offline-btn:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        .security-note {
+            margin-top: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 50px;
+            font-size: 0.8125rem;
+            color: #6ee7b7;
+            font-weight: 600;
+        }
+
+        .security-note-icon {
+            font-size: 1rem;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        /* Network status indicator */
+        .network-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ef4444;
+            display: inline-block;
+            box-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .status-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 0.75rem 1rem;
+            background: rgba(239, 68, 68, 0.1);
+            border-bottom: 1px solid rgba(239, 68, 68, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: #fca5a5;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <span class="network-dot"></span>
+        No Internet Connection
+    </div>
+
+    <div class="offline-container">
+        <div class="offline-icon-wrapper">
+            <span class="offline-icon">📡</span>
+        </div>
+
+        <h1 class="offline-title">You're Offline</h1>
+        <p class="offline-message">
+            It looks like you've lost your internet connection. 
+            Don't worry — your evidence vault data is safe. 
+            Reconnect and try again.
+        </p>
+
+        <button class="offline-btn" onclick="window.location.reload()">
+            🔄 Try Again
+        </button>
+
+        <div class="security-note">
+            <span class="security-note-icon">🔒</span>
+            Your data remains encrypted and secure
+        </div>
+    </div>
+
+    <script>
+        // Auto-reload when connection is restored
+        window.addEventListener('online', () => {
+            window.location.reload();
+        });
+    </script>
+</body>
+</html>

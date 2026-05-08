@@ -1,0 +1,83 @@
+{
+    "name": "eWitnessVault - Secure Digital Evidence",
+    "short_name": "eWitnessVault",
+    "description": "The definitive platform for secure, tamper-proof digital evidence. Military-grade encryption and immutable chain of custody.",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#0f172a",
+    "theme_color": "#06b6d4",
+    "orientation": "portrait-primary",
+    "categories": [
+        "security",
+        "legal",
+        "productivity"
+    ],
+    "lang": "en-US",
+    "dir": "ltr",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "/images/logo-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/images/logo-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "/images/logo-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/images/logo-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Upload Evidence",
+            "short_name": "Upload",
+            "description": "Upload new evidence to your secure vault",
+            "url": "/upload",
+            "icons": [
+                {
+                    "src": "/images/logo-192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        },
+        {
+            "name": "View Evidence",
+            "short_name": "Evidence",
+            "description": "Browse all your secured evidence files",
+            "url": "/evidence",
+            "icons": [
+                {
+                    "src": "/images/logo-192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        },
+        {
+            "name": "Dashboard",
+            "short_name": "Dashboard",
+            "description": "View your secure evidence dashboard",
+            "url": "/dashboard",
+            "icons": [
+                {
+                    "src": "/images/logo-192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        }
+    ]
+}
